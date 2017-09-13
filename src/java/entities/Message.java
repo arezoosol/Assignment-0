@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package entities;
@@ -13,15 +12,15 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Arezoo Sol
+ * @author nb
  */
 @Entity
-public class message implements Serializable {
-
+public class Message implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     private String message;
 
     public String getMessage() {
@@ -50,10 +49,10 @@ public class message implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof message)) {
+        if (!(object instanceof Message)) {
             return false;
         }
-        message other = (message) object;
+        Message other = (Message) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -62,7 +61,7 @@ public class message implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.message[ id=" + id + " ]";
+        return "entities.Message[ id=" + id + " ]";
     }
     
 }
