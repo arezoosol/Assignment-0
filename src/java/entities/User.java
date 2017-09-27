@@ -28,6 +28,14 @@ public class User implements Serializable {
     private String password;
     private String profilename;
 
+    public String getProfilename() {
+        return profilename;
+    }
+
+    public void setProfilename(String profilename) {
+        this.profilename = profilename;
+    }
+
     public String getUsername() {
         return username;
     }

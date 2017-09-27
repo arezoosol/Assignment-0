@@ -25,6 +25,22 @@ public class Bids implements Serializable {
 
     private int bid;
     private int timingLeft;
+
+    public int getBid() {
+        return bid;
+    }
+
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
+
+    public int getTimingLeft() {
+        return timingLeft;
+    }
+
+    public void setTimingLeft(int timingLeft) {
+        this.timingLeft = timingLeft;
+    }
     
           
     public Long getId() {
