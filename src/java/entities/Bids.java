@@ -23,6 +23,10 @@ public class Bids implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private int bid;
+    private int timingLeft;
+    
+          
     public Long getId() {
         return id;
     }
