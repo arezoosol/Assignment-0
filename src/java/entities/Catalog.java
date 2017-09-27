@@ -21,10 +21,22 @@ public class Catalog implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;  
+    
+    private String profilename;
 
+    public String getProfilename() {
+        return profilename;
+    }
+
+    public void setProfilename(String profilename) {
+        this.profilename = profilename;
+    }
     public Long getId() {
+       
         return id;
+        
+        
     }
 
     public void setId(Long id) {
