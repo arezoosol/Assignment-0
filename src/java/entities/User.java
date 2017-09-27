@@ -23,8 +23,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    
     private String username;
     private String password;
+    private String profilename;
 
     public String getUsername() {
         return username;
