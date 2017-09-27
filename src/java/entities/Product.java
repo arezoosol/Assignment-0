@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,52 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String productName;
+    private String feedBack; 
+    private Bids currentBid;
+    private String contactInformation;
+    private double sellersRating;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getFeedBack() {
+        return feedBack;
+    }
+
+    public void setFeedBack(String feedBack) {
+        this.feedBack = feedBack;
+    }
+
+    public Bids getCurrentBid() {
+        return currentBid;
+    }
+
+    public void setCurrentBid(Bids currentBid) {
+        this.currentBid = currentBid;
+    }
+
+    public String getContactInformation() {
+        return contactInformation;
+    }
+
+    public void setContactInformation(String contactInformation) {
+        this.contactInformation = contactInformation;
+    }
+
+    public double getSellersRating() {
+        return sellersRating;
+    }
+
+    public void setSellersRating(int sellersRating) {
+        this.sellersRating = sellersRating;
+    }
 
     public Long getId() {
         return id;
