@@ -12,6 +12,9 @@
             <h:outputLabel value="Message:"/><h:inputText value="#{MessageView.message.message}"/>
             <h:commandButton action="#{MessageView.postMessage}" value="Post Message"/>
         </h:form>
+            <h:form>
+                <h:commandButton action="#{ProductView.postProduct}" value="Create product and post to database"/>
+        </h:form>
         </f:view>
     </h:body>
 </html>

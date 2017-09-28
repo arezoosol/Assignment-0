@@ -26,9 +26,16 @@ public class Product implements Serializable {
     
     private String productName;
     private String feedBack; 
-    private Bids currentBid;
+  //  private Bids currentBid;
     private String contactInformation;
     private double sellersRating;
+    
+    public Product(String productName){
+        this.productName=productName;
+    }
+    //A test product is made here for testing purposes
+    public Product() {
+    }
 
     public String getProductName() {
         return productName;
@@ -46,13 +53,13 @@ public class Product implements Serializable {
         this.feedBack = feedBack;
     }
 
-    public Bids getCurrentBid() {
-        return currentBid;
-    }
-
-    public void setCurrentBid(Bids currentBid) {
-        this.currentBid = currentBid;
-    }
+//    public Bids getCurrentBid() {
+//        return currentBid;
+//    }
+//
+//    public void setCurrentBid(Bids currentBid) {
+//        this.currentBid = currentBid;
+//    }
 
     public String getContactInformation() {
         return contactInformation;
@@ -77,6 +84,11 @@ public class Product implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getProductAsTableRow(){
+        String s = "<tr><td>"+productName+"</td><td>"+feedBack+"</td><td>"+contactInformation+"</td><td>"+sellersRating+"</td></tr>";
+        return s;
+    }
 
     @Override
     public int hashCode() {
@@ -100,7 +112,13 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Product[ id=" + id + " ]";
+        String string ="";
+        string += "productName: " + productName +"\n";
+        string += "feedback: " + feedBack +"\n";
+    //    string += "currentBid" + currentBid +"\n";
+        string += "contactInformation: " + contactInformation +"\n";
+        string += "sellers rating: " + sellersRating +"\n";
+        return string;
     }
     
 }
