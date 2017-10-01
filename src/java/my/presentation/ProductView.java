@@ -35,7 +35,6 @@ public class ProductView {
     
     public String getAllProducts(){
         String s = "";
-        System.out.println("Trying to get all products. . .");
         for (Product p: productFacade.findAll()){
             s+=p.toString();
         }
