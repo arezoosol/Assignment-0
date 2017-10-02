@@ -15,10 +15,10 @@ and open the template in the editor.
     <body>
         <f:view>
             <h:form>
-             <h:outputLabel value="Username: "/><h:inputText value="#{UserView.auctionUser.username}"/>
-                <h:outputLabel value="Password: "/><h:inputSecret value="#{UserView.auctionUser.password}"/>-->
-                <h:commandButton action="#{UserView.authenticate}" value="Login"/>
-                <h:commandButton action="#{UserView.register}" value="Register"/>
+             <h:outputLabel value="Username: "/><h:inputText value="#{AuctionUserView.auctionUser.username}"/>
+                <h:outputLabel value="Password: "/><h:inputSecret value="#{AuctionUserView.auctionUser.password}"/>-->
+                <h:commandButton action="#{AuctionUserView.authenticate}" value="Login"/>
+                <h:commandButton action="#{AuctionUserView.register}" value="Register"/>
             </h:form>
         </f:view>
     </body>

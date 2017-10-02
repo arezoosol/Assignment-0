@@ -6,10 +6,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,6 +30,45 @@ public class AuctionUser implements Serializable {
     private String username;
     private String password;
     private String profilename;
+    private double sellersRating;
+    private int numberOfRatings;
+    @OneToOne
+    private ProductCatalog productCatalog;
+
+    public ProductCatalog getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(ProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
+    }
+
+    public int getNumberOfRatings() {
+        return numberOfRatings;
+    }
+
+    public void setNumberOfRatings(int numberOfRatings) {
+        this.numberOfRatings = numberOfRatings;
+    }
+
+    public double getSellersRating() {
+        return sellersRating;
+    }
+
+    public void setSellersRating(double sellersRating) {
+        this.sellersRating = sellersRating;
+    }
+    
+    @OneToMany
+    private List<Bids> bid;
+
+    public List<Bids> getBid() {
+        return bid;
+    }
+
+    public void setBid(List<Bids> bid) {
+        this.bid = bid;
+    }
 
     public String getProfilename() {
         return profilename;

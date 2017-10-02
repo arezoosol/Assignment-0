@@ -5,28 +5,30 @@
  */
 package my.presentation;
 
-import boundary.UserFacade;
+import boundary.AuctionUserFacade;
 import entities.AuctionUser;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Daniel
  */
-@ManagedBean(name = "UserView")
+@ManagedBean(name = "AuctionUserView")
 @RequestScoped
-public class UserView {
+public class AuctionUserView {
     
     
     @EJB
-    private UserFacade userFacade;
+    private AuctionUserFacade userFacade;
     private AuctionUser auctionUser;
     /**
      * Creates a new instance of UserView
      */
-    public UserView() {
+    public AuctionUserView() {
         auctionUser = new AuctionUser();
      }
 
@@ -38,16 +40,17 @@ public class UserView {
         this.auctionUser = auctionUser;
     }
 
-    public UserFacade getUserFacade() {
+    public AuctionUserFacade getUserFacade() {
         return userFacade;
     }
 
-    public void setUserFacade(UserFacade userFacade) {
+    public void setUserFacade(AuctionUserFacade userFacade) {
         this.userFacade = userFacade;
     }
     
     public String register(){
         if (userFacade.ifUserExist(auctionUser)){
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Username already exists","Register error"));
             return "index";
         }
         else {
@@ -57,8 +60,13 @@ public class UserView {
     }
     
     public String authenticate(){
+        if (userFacade == null)
+            System.out.println("userFacade er null.. . .. . .. .. . .");
+        else{
         if (userFacade.authenticate(auctionUser))
             return "theend";
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong username and password combination.","Login error"));
         return "index";
     }
     

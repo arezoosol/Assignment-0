@@ -19,7 +19,7 @@ import javax.persistence.criteria.CriteriaQuery;
  * @author Daniel
  */
 @Stateless
-public class UserFacade extends AbstractFacade<AuctionUser> {
+public class AuctionUserFacade extends AbstractFacade<AuctionUser> {
 
     @PersistenceContext(unitName = "SimpleEE6AppPU")
     private EntityManager em;
@@ -29,13 +29,14 @@ public class UserFacade extends AbstractFacade<AuctionUser> {
         return em;
     }
 
-    public UserFacade() {
+    public AuctionUserFacade() {
         super(AuctionUser.class);
     }
     
     public boolean ifUserExist(AuctionUser auctionUser){
         if (auctionUser == null)
             return false;
+        System.out.println(em.isOpen());
         TypedQuery<AuctionUser> query = em.createQuery("Select u from AuctionUser u where u.username = '" + auctionUser.getUsername() + "'",AuctionUser.class);
         AuctionUser u = null;
         try {
