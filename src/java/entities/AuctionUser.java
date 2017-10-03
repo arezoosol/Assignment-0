@@ -59,7 +59,7 @@ public class AuctionUser implements Serializable {
         this.sellersRating = sellersRating;
     }
     
-    @OneToMany
+    @OneToMany(mappedBy="auctionUser")
     private List<Bids> bid;
 
     public List<Bids> getBid() {

@@ -8,9 +8,13 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,6 +33,18 @@ public class Product implements Serializable {
   //  private Bids currentBid;
     private String contactInformation;
     private double sellersRating;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="productCatalog_ID")
+    private ProductCatalog productCatalog;
+
+    public ProductCatalog getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(ProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
+    }
     
     public Product(String productName){
         this.productName=productName;

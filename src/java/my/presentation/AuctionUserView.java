@@ -7,6 +7,7 @@ package my.presentation;
 
 import boundary.AuctionUserFacade;
 import entities.AuctionUser;
+import entities.ProductCatalog;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +26,7 @@ public class AuctionUserView {
     @EJB
     private AuctionUserFacade userFacade;
     private AuctionUser auctionUser;
+    
     /**
      * Creates a new instance of UserView
      */

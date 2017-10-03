@@ -7,9 +7,12 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -26,11 +29,23 @@ public class Bids implements Serializable {
 
     private int bid;
     private int timingLeft;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="auctionUser_ID")
+    private AuctionUser auctionUser;
+
+    
     @OneToOne
     private Product product;
 
     public Product getProduct() {
         return product;
+    }
+    public AuctionUser getAuctionUser() {
+        return auctionUser;
+    }
+
+    public void setAuctionUser(AuctionUser auctionUser) {
+        this.auctionUser = auctionUser;
     }
 
     public void setProduct(Product product) {

@@ -37,7 +37,8 @@ public class ProductCatalog implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;  
     
-    @OneToMany
+    
+    @OneToMany(mappedBy = "productCatalog")
     private List<Product> products;
 
     public List<Product> getProducts() {

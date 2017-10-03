@@ -5,21 +5,44 @@
  */
 package my.presentation;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import boundary.ProductCatalogFacade;
+import entities.ProductCatalog;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author Daniel
  */
-@Named(value = "ProductCatalogView")
-@Dependent
+@ManagedBean(name = "ProductCatalogView")
+@RequestScoped
 public class ProductCatalogView {
 
+    @EJB
+    private ProductCatalogFacade productCatalogFacade;
+    private ProductCatalog productCatalog;
+
+    public ProductCatalogFacade getProductCatalogFacade() {
+        return productCatalogFacade;
+    }
+
+    public void setProductCatalogFacade(ProductCatalogFacade productCatalogFacade) {
+        this.productCatalogFacade = productCatalogFacade;
+    }
+
+    public ProductCatalog getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(ProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
+    }
     /**
      * Creates a new instance of ProductCatalogView
      */
     public ProductCatalogView() {
+        productCatalog = new ProductCatalog();
     }
     
 }
