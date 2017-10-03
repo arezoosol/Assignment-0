@@ -6,9 +6,11 @@
 package boundary;
 
 import entities.Bids;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,12 @@ public class BidsFacade extends AbstractFacade<Bids> {
 
     public BidsFacade() {
         super(Bids.class);
+    }
+
+    public List<Bids> findRecent() {
+        TypedQuery<Bids> query = em.createQuery("SELECT a FROM Bids a ORDER BY a.timingLeft",Bids.class);
+        List<Bids> result = query.getResultList();
+        return result;
     }
     
 }

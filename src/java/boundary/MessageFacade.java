@@ -5,6 +5,7 @@
 package boundary;
 
 import entities.Message;
+import entities.Product;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

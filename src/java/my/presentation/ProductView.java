@@ -7,6 +7,7 @@ package my.presentation;
 
 import boundary.ProductFacade;
 import entities.Product;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -47,6 +48,16 @@ public class ProductView {
                     s+=p.getProductAsTableRow();
                 s+="</table>";
                 return s;
+    }
+    
+    public String searchForProducts(){
+        List<Product> results = productFacade.findProductThatContains(product.getProductName());
+        System.out.println(results);
+        return asTable(results);
+    }
+    
+    private String asTable(List<Product> list){
+        return "Test";
     }
     
     public int getNumberOfProducts(){

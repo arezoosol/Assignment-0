@@ -6,9 +6,11 @@
 package boundary;
 
 import entities.Product;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,12 @@ public class ProductFacade extends AbstractFacade<Product> {
 
     public ProductFacade() {
         super(Product.class);
+    }
+    
+     public List<Product> findProductThatContains(String string){
+        TypedQuery<Product> query = em.createQuery("SELECT p FROM product p WHERE p.productName LIKE '%" + string + "%'",Product.class);
+        List<Product> result = query.getResultList();
+        return result;
     }
     
 }

@@ -6,10 +6,15 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:outputLabel value="Thanks! There are " />
-        <h:outputText value="#{MessageView.numberOfMessages}"/>
-        <h:outputText value=" messages!"/>
-        <h:outputText value="&#10;" />
+        <h:form>
+            <h:commandButton action="catalog" value="Catalog"/>
+        </h:form>
+        <h:form>            
+            <h:outputLabel value="Search: "/><h:inputText value="#{ProductView.product.productName}"/>
+            <h:commandButton action="results" value="Search"/>
+        </h:form>
+        <h:outputLabel value="Recent bids: " />
+        <h:outputText value="#{BidsView.mostRecentBidsAsTable}" escape="false"/>
         <h:outputLabel value="products: " />
         <h:outputText value="#{ProductView.allProductsAsTable}" escape="false"/>
         <h:outputText value="&#10;" />
