@@ -51,6 +51,7 @@ public class AuctionUserFacade extends AbstractFacade<AuctionUser> {
 //        Query query = em.createQuery("SELECT x FROM User x WHERE x.username = '" + user.getUsername() + "'");
 //        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery(User.class);
 //        CriteriaQuery select = cq.select(cq.from(User.class));
+        boolean validLogin = false;
         TypedQuery<AuctionUser> query = em.createQuery("Select u from AuctionUser u where u.username = '" + auctionUser.getUsername() + "'",AuctionUser.class);
         AuctionUser u = null;
         try {
@@ -59,9 +60,12 @@ public class AuctionUserFacade extends AbstractFacade<AuctionUser> {
             System.out.println(e);
         }
         if (u!= null){
-            return u.getUsername().equals(auctionUser.getUsername()) && u.getPassword().equals(auctionUser.getPassword());
+            validLogin =  u.getUsername().equals(auctionUser.getUsername()) && u.getPassword().equals(auctionUser.getPassword());
         }
-        return false;
+        if (validLogin){
+            auctionUser = u;
+        }
+        return validLogin;
     }
     
 }

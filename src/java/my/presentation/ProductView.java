@@ -50,14 +50,20 @@ public class ProductView {
                 return s;
     }
     
-    public String searchForProducts(){
+    public String getSearchForProducts(){
         List<Product> results = productFacade.findProductThatContains(product.getProductName());
-        System.out.println(results);
         return asTable(results);
     }
     
     private String asTable(List<Product> list){
-        return "Test";
+        if (list==null)
+            return"null";
+        String s="<table><tr><td>ID</td><td>Name</td><td>Feedback</td></tr>";
+        for (Product p : list){
+            s+="<tr><td>"+p.getId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getFeedBack()+"</td></tr>";
+        }
+        s+="</table>";
+        return s;
     }
     
     public int getNumberOfProducts(){

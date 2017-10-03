@@ -32,7 +32,7 @@ public class ProductFacade extends AbstractFacade<Product> {
     }
     
      public List<Product> findProductThatContains(String string){
-        TypedQuery<Product> query = em.createQuery("SELECT p FROM product p WHERE p.productName LIKE '%" + string + "%'",Product.class);
+        TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.productName LIKE '%" + string + "%'",Product.class);
         List<Product> result = query.getResultList();
         return result;
     }
