@@ -75,7 +75,6 @@ public class ProductView {
     
     public void createProduct(){
         product.setAuctionUser(auctionUserView.getAuctionUser());
-        System.out.println(auctionUserView.getAuctionUser().getProducts().size());
         productFacade.create(product);
         auctionUserView.update();
     }

@@ -94,10 +94,6 @@ public class AuctionUserFacade extends AbstractFacade<AuctionUser> {
         List<Product> products = query.getResultList();
         TypedQuery<Product> query2 = em.createQuery("Select u from Product u where u.productCatalog.id = '" +auctionUser.getProductCatalog().getId()+"'",Product.class);
         List<Product> catalogProducts = query2.getResultList();
-        System.out.println(catalogProducts.size());
-        System.out.println(catalogProducts.size());
-        System.out.println(catalogProducts.size());
-        System.out.println(auctionUser.getProductCatalog().getId());
         AuctionUser dbUser = em.find(AuctionUser.class, auctionUser.getId());
         dbUser.setProducts(products);
         dbUser.getProductCatalog().setProducts(catalogProducts);
