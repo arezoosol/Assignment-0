@@ -34,6 +34,17 @@ public class AuctionUser implements Serializable {
     private int numberOfRatings;
     @OneToOne
     private ProductCatalog productCatalog;
+    
+    @OneToMany(mappedBy = "auctionUser")
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public ProductCatalog getProductCatalog() {
         return productCatalog;
@@ -125,6 +136,18 @@ public class AuctionUser implements Serializable {
     @Override
     public String toString() {
         return "entities.User[ id=" + id + " ]";
+    }
+
+    public void Copy(AuctionUser u) {
+        this.bid=u.getBid();
+        this.id=u.getId();
+        this.numberOfRatings=u.getNumberOfRatings();
+        this.password=u.getPassword();
+        this.productCatalog=u.getProductCatalog();
+        this.profilename=u.getProfilename();
+        this.sellersRating=u.getSellersRating();
+        this.username=u.getUsername();
+        this.products=u.getProducts();
     }
     
 }

@@ -7,21 +7,64 @@ package my.presentation;
 
 import boundary.ProductFacade;
 import entities.Product;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIOutput;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  *
  * @author Daniel
  */
 @ManagedBean(name = "ProductView")
-@RequestScoped
+@SessionScoped
 public class ProductView {
     @EJB
     private ProductFacade productFacade;
     private Product product;
+    
+    @ManagedProperty(value="#{AuctionUserView}")
+    private AuctionUserView auctionUserView;
+
+    public AuctionUserView getAuctionUserView() {
+        return auctionUserView;
+    }
+
+    public void setAuctionUserView(AuctionUserView auctionUserView) {
+        this.auctionUserView = auctionUserView;
+    }
+    
+    public Product getProduct(){
+        return product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public ProductFacade getProductFacade() {
+        return productFacade;
+    }
+
+    public void setProductFacade(ProductFacade productFacade) {
+        this.productFacade = productFacade;
+    }
+    
+    public void test(AjaxBehaviorEvent abe){
+        product.setId((Long)((UIOutput)abe.getSource()).getValue());
+    }
+    
+    public void addToCatalog(){
+        product.setProductCatalog(auctionUserView.getAuctionUser().getProductCatalog());
+        productFacade.save(product);
+        auctionUserView.update();
+    }
 
     /**
      * Creates a new instance of ProductView
@@ -30,8 +73,16 @@ public class ProductView {
         this.product = new Product();
     }
     
-    public Product getProduct(){
-        return product;
+    public void createProduct(){
+        product.setAuctionUser(auctionUserView.getAuctionUser());
+        System.out.println(auctionUserView.getAuctionUser().getProducts().size());
+        productFacade.create(product);
+        auctionUserView.update();
+    }
+    
+    
+    public List<Product> getAllProductsAsList(){
+        return productFacade.findAll();
     }
     
     public String getAllProducts(){

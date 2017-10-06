@@ -9,6 +9,7 @@ import boundary.ProductCatalogFacade;
 import entities.ProductCatalog;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 /**
@@ -22,6 +23,25 @@ public class ProductCatalogView {
     @EJB
     private ProductCatalogFacade productCatalogFacade;
     private ProductCatalog productCatalog;
+    
+    @ManagedProperty(value="#{AuctionUserView}")
+    private AuctionUserView auctionUserView;
+
+    public AuctionUserView getAuctionUserView() {
+        return auctionUserView;
+    }
+
+    public void setAuctionUserView(AuctionUserView auctionUserView) {
+        this.auctionUserView = auctionUserView;
+    }
+    
+    public void createCatalog(){
+        if (auctionUserView.getAuctionUser().getProductCatalog()==null){
+        productCatalog = new ProductCatalog();
+        this.auctionUserView.getAuctionUser().setProductCatalog(productCatalog);
+        productCatalogFacade.create(productCatalog);
+        this.auctionUserView.getUserFacade().save(auctionUserView.getAuctionUser());}
+    }
 
     public ProductCatalogFacade getProductCatalogFacade() {
         return productCatalogFacade;

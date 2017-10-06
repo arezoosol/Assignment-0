@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,6 +28,9 @@ public class Product implements Serializable {
     
     private String productName;
     private String feedBack; 
+    private int startingBid;
+
+    
   //  private Bids currentBid;
     private String contactInformation;
     private double sellersRating;
@@ -37,6 +38,25 @@ public class Product implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="productCatalog_ID")
     private ProductCatalog productCatalog;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="auctionUser_ID")
+    private AuctionUser auctionUser;
+    
+    public int getStartingBid() {
+        return startingBid;
+    }
+
+    public void setStartingBid(int startingBid) {
+        this.startingBid = startingBid;
+    }
+    public AuctionUser getAuctionUser() {
+        return auctionUser;
+    }
+
+    public void setAuctionUser(AuctionUser auctionUser) {
+        this.auctionUser = auctionUser;
+    }
 
     public ProductCatalog getProductCatalog() {
         return productCatalog;
@@ -128,13 +148,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        String string ="";
-        string += "productName: " + productName +"\n";
-        string += "feedback: " + feedBack +"\n";
-    //    string += "currentBid" + currentBid +"\n";
-        string += "contactInformation: " + contactInformation +"\n";
-        string += "sellers rating: " + sellersRating +"\n";
-        return string;
+        return "id: " + this.id;
     }
     
 }

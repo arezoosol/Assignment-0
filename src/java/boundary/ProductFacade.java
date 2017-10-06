@@ -36,5 +36,14 @@ public class ProductFacade extends AbstractFacade<Product> {
         List<Product> result = query.getResultList();
         return result;
     }
+
+    public void save(Product product) {
+        TypedQuery<Product> query = em.createQuery("Select p from Product p where p.id = '"+product.getId()+"'",Product.class);
+        Product dbProduct = query.getSingleResult();
+        dbProduct.setProductCatalog(product.getProductCatalog());
+        System.out.println(product);
+        em.persist(dbProduct);
+        
+    }
     
 }

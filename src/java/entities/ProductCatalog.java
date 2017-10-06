@@ -40,8 +40,9 @@ public class ProductCatalog implements Serializable {
     
     @OneToMany(mappedBy = "productCatalog")
     private List<Product> products;
-
+    
     public List<Product> getProducts() {
+        System.out.println(products.size());
         return products;
     }
 

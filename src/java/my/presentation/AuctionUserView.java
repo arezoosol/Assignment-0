@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -19,7 +20,7 @@ import javax.faces.context.FacesContext;
  * @author Daniel
  */
 @ManagedBean(name = "AuctionUserView")
-@RequestScoped
+@SessionScoped
 public class AuctionUserView {
     
     
@@ -74,6 +75,14 @@ public class AuctionUserView {
     
     public String test(){
         return "indexOld";
+    }
+
+    void save() {
+        userFacade.save(auctionUser);
+    }
+
+    void update() {
+        userFacade.update(auctionUser);
     }
     
 }
