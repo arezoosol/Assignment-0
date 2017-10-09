@@ -10,7 +10,9 @@ import entities.Bids;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -23,6 +25,9 @@ public class BidsView {
     @EJB
     private BidsFacade bidsFacade;
     private Bids bids;
+    
+    @ManagedProperty(value="#{AuctionUserView}")
+    private AuctionUserView auctionUserView;
 
     public BidsFacade getBidsFacade() {
         return bidsFacade;
@@ -40,9 +45,29 @@ public class BidsView {
         this.bids = bids;
     }
     
-    public String getMostRecentBidsAsTable(){
+    public void publish(ActionEvent event){
+        this.bidsFacade.publish(auctionUserView);
+    }
+
+    public AuctionUserView getAuctionUserView() {
+        return auctionUserView;
+    }
+
+    public void setAuctionUserView(AuctionUserView auctionUserView) {
+        this.auctionUserView = auctionUserView;
+    }
+    
+    public List<Bids> getMostRecentBids(){
         List<Bids> recentBids = bidsFacade.findRecent();
-        return asTable(recentBids);
+        if (recentBids.size()>10)
+            return recentBids.subList(0, 10);
+        return recentBids;
+    }
+    
+    public void bid(Bids bid){
+        System.out.println("Trying to print bid");
+        if (bid!=null)
+        System.out.println(bid.getId());
     }
     
     private String asTable(List<Bids> list){
@@ -50,7 +75,7 @@ public class BidsView {
             return "null";
         String s ="<table><tr><td>Current Bid</td><td>Time left</td></tr>";
         for (Bids b : list){
-            s+="<tr><td>"+b.getBid()+"</td><td>"+b.getTimingLeft()+"</td></tr>";
+            s+="<tr><td>"+b.getBid()+"</td><td>"+b.getBidDuration()+"</td></tr>";
         }
         s+="</table>";
         return s;

@@ -56,7 +56,8 @@ public class ProductCatalogView {
     }
     
     public void publish(){
-        System.out.println("Trying to publish catalog!");
+        if (auctionUserView.getAuctionUser().getProductCatalog()==null)
+            createCatalog();
         productCatalogFacade.Publish(auctionUserView);
         auctionUserView.update();
     }

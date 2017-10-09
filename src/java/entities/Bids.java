@@ -28,7 +28,11 @@ public class Bids implements Serializable {
     private Long id;
 
     private int bid;
-    private int timingLeft;
+    private int bidDuration;
+    private int startTime;
+
+    
+    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="auctionUser_ID")
     private AuctionUser auctionUser;
@@ -36,7 +40,14 @@ public class Bids implements Serializable {
     
     @OneToOne
     private Product product;
+    
+    public int getStartTime() {
+        return startTime;
+    }
 
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
     public Product getProduct() {
         return product;
     }
@@ -60,12 +71,12 @@ public class Bids implements Serializable {
         this.bid = bid;
     }
 
-    public int getTimingLeft() {
-        return timingLeft;
+    public int getBidDuration() {
+        return bidDuration;
     }
 
-    public void setTimingLeft(int timingLeft) {
-        this.timingLeft = timingLeft;
+    public void setBidDuration(int bidDuration) {
+        this.bidDuration = bidDuration;
     }
     
           

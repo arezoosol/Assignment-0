@@ -39,7 +39,9 @@ and open the template in the editor.
             </h:dataTable>
         </h:form>
         <h:form>
-            <h:commandButton value="publish" action="#{ProductCatalogView.publish}"/>
+            <h:commandButton value="publish" action="#{ProductCatalogView.publish}">
+                <f:actionListener binding="#{BidsView.publish(event)}"/>
+            </h:commandButton>
         </h:form>
         <h:form>
             <h:selectOneMenu value="#{ProductView.product.id}" onclick="">
@@ -52,6 +54,7 @@ and open the template in the editor.
             <h:outputLabel value="Product name: "/><h:inputText value="#{ProductView.product.productName}"/>
             <h:outputLabel value="Starting Bid: "/><h:inputText value="#{ProductView.product.startingBid}"/>
             <h:commandButton value="Create product" action="#{ProductView.createProduct}"/>
+            <h:commandButton value="Back" action="theend"/>
             </h:form>
     </h:body>
 </html>

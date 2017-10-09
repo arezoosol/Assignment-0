@@ -74,6 +74,7 @@ public class ProductView {
     }
     
     public void createProduct(){
+        product.setId(null);
         product.setAuctionUser(auctionUserView.getAuctionUser());
         productFacade.create(product);
         auctionUserView.update();
