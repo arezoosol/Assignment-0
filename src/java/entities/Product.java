@@ -34,6 +34,9 @@ public class Product implements Serializable {
   //  private Bids currentBid;
     private String contactInformation;
     private double sellersRating;
+    private boolean published;
+
+    
     
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="productCatalog_ID")
@@ -42,6 +45,14 @@ public class Product implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="auctionUser_ID")
     private AuctionUser auctionUser;
+    
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
     
     public int getStartingBid() {
         return startingBid;

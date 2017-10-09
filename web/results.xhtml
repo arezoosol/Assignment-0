@@ -6,12 +6,34 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <h:outputText value="#{ProductView.searchForProducts}" escape="false"/>
+        <h:dataTable headerClass="list-header-left" value="#{ProductView.searchForProducts}" var="item" border="2" cellspacing="1" cellpadding="1" >
+                <h:column>
+                    <f:facet name="header">Seller</f:facet>
+                    #{item.auctionUser.username}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Product</f:facet>
+                    #{item.productName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Starting Bid</f:facet>
+                    #{item.startingBid}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Rating 0-5</f:facet>
+                    #{item.sellersRating}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Feedback</f:facet>
+                    #{item.feedBack}
+                </h:column>
+            </h:dataTable>
     </h:body>
 </html>

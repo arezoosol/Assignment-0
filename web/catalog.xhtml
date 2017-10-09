@@ -39,6 +39,9 @@ and open the template in the editor.
             </h:dataTable>
         </h:form>
         <h:form>
+            <h:commandButton value="publish" action="#{ProductCatalogView.publish}"/>
+        </h:form>
+        <h:form>
             <h:selectOneMenu value="#{ProductView.product.id}" onclick="">
                 <f:selectItems value="#{AuctionUserView.auctionUser.products}" var="selectedproduct" itemLabel="#{selectedproduct.productName}" itemValue="#{selectedproduct.id}"/>
                 <f:ajax listener="#{ProductView.test}"/>

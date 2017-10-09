@@ -54,6 +54,12 @@ public class ProductCatalogView {
     public ProductCatalog getProductCatalog() {
         return productCatalog;
     }
+    
+    public void publish(){
+        System.out.println("Trying to publish catalog!");
+        productCatalogFacade.Publish(auctionUserView);
+        auctionUserView.update();
+    }
 
     public void setProductCatalog(ProductCatalog productCatalog) {
         this.productCatalog = productCatalog;

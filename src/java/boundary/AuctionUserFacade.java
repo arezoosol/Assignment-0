@@ -37,7 +37,6 @@ public class AuctionUserFacade extends AbstractFacade<AuctionUser> {
     public boolean ifUserExist(AuctionUser auctionUser){
         if (auctionUser == null)
             return false;
-        System.out.println(em.isOpen());
         TypedQuery<AuctionUser> query = em.createQuery("Select u from AuctionUser u where u.username = '" + auctionUser.getUsername() + "'",AuctionUser.class);
         AuctionUser u = null;
         try {

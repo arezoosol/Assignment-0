@@ -100,9 +100,9 @@ public class ProductView {
                 return s;
     }
     
-    public String getSearchForProducts(){
+    public List<Product> getSearchForProducts(){
         List<Product> results = productFacade.findProductThatContains(product.getProductName());
-        return asTable(results);
+        return results;
     }
     
     private String asTable(List<Product> list){
