@@ -60,5 +60,23 @@ public class BidsFacade extends AbstractFacade<Bids> {
 //            query = em.createQuery("IF EXISTS (SELECT b FROM Bids b WHERE b.product.id = '"+p.getId()+"') UPDATE Bids SET Bids.product.id = '"+p.getId()+"', Bids.auctionUser.id = '"+p.getAuctionUser().getId()+"' WHERE Bids.product.id = '"+p.getId()+"' ELSE INSERT INTO Bids VALUE (bid, startTime, auctionUser.id, product.id) VALUES ('"+p.getStartingBid()+"','"+currentTime+"','"+auctionUserView.getAuctionUser().getId()+"','"+p.getId()+"')",Product.class);
         }
     }
+
+    public Bids getBidFromProduct(Product product) {
+        Bids b = null;
+        TypedQuery<Bids> query = em.createQuery("SELECT bid FROM Bids bid Where bid.product.id = '"+product.getId()+"'",Bids.class);
+        try {
+            b = query.getSingleResult();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    public void placeBid(Bids bid, AuctionUserView auctionUserView) {
+        Bids b = em.find(Bids.class,bid.getId());
+        b.setBid(bid.getBid()+5);
+        b.setAuctionUser(auctionUserView.getAuctionUser());
+        em.persist(b);
+    }
     
 }

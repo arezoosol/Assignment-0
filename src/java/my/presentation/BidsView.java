@@ -7,6 +7,7 @@ package my.presentation;
 
 import boundary.BidsFacade;
 import entities.Bids;
+import entities.Product;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -65,9 +66,11 @@ public class BidsView {
     }
     
     public void bid(Bids bid){
-        System.out.println("Trying to print bid");
-        if (bid!=null)
-        System.out.println(bid.getId());
+        bidsFacade.placeBid(bid,auctionUserView);
+    }
+    
+    public void bidProduct(Product product){
+        bid(bidsFacade.getBidFromProduct(product));
     }
     
     private String asTable(List<Bids> list){
