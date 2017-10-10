@@ -78,5 +78,11 @@ public class BidsFacade extends AbstractFacade<Bids> {
         b.setAuctionUser(auctionUserView.getAuctionUser());
         em.persist(b);
     }
+
+    public List<Bids> findBidsWithProductName(String productName) {
+        TypedQuery<Bids> query = em.createQuery("SELECT b FROM Bids b WHERE b.product.productName LIKE '%"+productName+"%'",Bids.class);
+        List<Bids> list = query.getResultList();
+        return list;
+    }
     
 }

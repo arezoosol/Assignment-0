@@ -29,6 +29,17 @@ public class BidsView {
     
     @ManagedProperty(value="#{AuctionUserView}")
     private AuctionUserView auctionUserView;
+    
+    @ManagedProperty(value="#{ProductView}")
+    private ProductView productView;
+
+    public ProductView getProductView() {
+        return productView;
+    }
+
+    public void setProductView(ProductView productView) {
+        this.productView = productView;
+    }
 
     public BidsFacade getBidsFacade() {
         return bidsFacade;
@@ -71,6 +82,10 @@ public class BidsView {
     
     public void bidProduct(Product product){
         bid(bidsFacade.getBidFromProduct(product));
+    }
+    
+    public List<Bids> getSearchForBidsOnProductNames(){
+        return bidsFacade.findBidsWithProductName(productView.getProduct().getProductName());
     }
     
     private String asTable(List<Bids> list){

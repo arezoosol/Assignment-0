@@ -14,29 +14,29 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-        <h:dataTable headerClass="list-header-left" value="#{ProductView.searchForProducts}" var="item" border="2" cellspacing="1" cellpadding="1" >
+        <h:dataTable headerClass="list-header-left" value="#{BidsView.searchForBidsOnProductNames}" var="item" border="2" cellspacing="1" cellpadding="1" >
                 <h:column>
                     <f:facet name="header">Seller</f:facet>
-                    #{item.auctionUser.username}
+                    #{item.product.auctionUser.username}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Product</f:facet>
-                    #{item.productName}
+                    #{item.product.productName}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Starting Bid</f:facet>
-                    #{item.startingBid}
+                    <f:facet name="header">Current Bid</f:facet>
+                    #{item.bid}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Time</f:facet>
-                    #{item.sellersRating}
+                    #{item.startTime}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Feedback</f:facet>
-                    #{item.feedBack}
+                    <f:facet name="header">Current Bidder</f:facet>
+                    #{item.auctionUser.username}
                 </h:column>
                 <h:column>                 
-                    <h:commandButton value="TODO BID" action="#{BidsView.bidProduct(item)}"/>                  
+                    <h:commandButton value="TODO BID" action="#{BidsView.bid(item)}"/>                  
                 </h:column>
             </h:dataTable>
         </h:form>
