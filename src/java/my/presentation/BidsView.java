@@ -60,7 +60,31 @@ public class BidsView {
     public void publish(ActionEvent event){
         this.bidsFacade.publish(auctionUserView);
     }
+    
+    public String getTimeLeft(Bids bid){
+        if (bid==null)
+            return "";
+        int now = (int)System.currentTimeMillis()/1000;
+        int timeLeft = bid.getStartTime()+bid.getBidDuration()-now;
+        return toTimeString(timeLeft);
+    }
 
+    private String toTimeString(int time){
+        String s ="";
+        if (time>=3600){
+            s+=(time/3600)+" hours, ";
+        }
+        if (time>=60){
+            int minutes = (time%3600)/60;
+            s+=minutes +" minutes and ";
+        }
+        if (time>=0)
+        s+=(time%60)+" seconds";
+        else
+            s+="Ended";
+        return s;
+    }
+    
     public AuctionUserView getAuctionUserView() {
         return auctionUserView;
     }

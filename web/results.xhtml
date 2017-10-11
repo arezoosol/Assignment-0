@@ -29,7 +29,7 @@ and open the template in the editor.
                 </h:column>
                 <h:column>
                     <f:facet name="header">Time</f:facet>
-                    #{item.startTime}
+                    #{BidsView.getTimeLeft(item)}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Current Bidder</f:facet>

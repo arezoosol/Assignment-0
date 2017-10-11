@@ -25,8 +25,8 @@
                     #{item.product.productName}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Time started</f:facet>
-                    #{item.startTime}
+                    <f:facet name="header">Time left</f:facet>
+                    #{BidsView.getTimeLeft(item)}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Current Bid</f:facet>

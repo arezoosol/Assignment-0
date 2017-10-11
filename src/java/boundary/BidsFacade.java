@@ -56,6 +56,8 @@ public class BidsFacade extends AbstractFacade<Bids> {
             b.setBid(p.getStartingBid());
             b.setProduct(p);
             b.setStartTime((int)currentTime/1000);
+            //sets bidDuration to 2 days. . . Should be chosen in the web interface
+            b.setBidDuration(172800);
             em.persist(b);
 //            query = em.createQuery("IF EXISTS (SELECT b FROM Bids b WHERE b.product.id = '"+p.getId()+"') UPDATE Bids SET Bids.product.id = '"+p.getId()+"', Bids.auctionUser.id = '"+p.getAuctionUser().getId()+"' WHERE Bids.product.id = '"+p.getId()+"' ELSE INSERT INTO Bids VALUE (bid, startTime, auctionUser.id, product.id) VALUES ('"+p.getStartingBid()+"','"+currentTime+"','"+auctionUserView.getAuctionUser().getId()+"','"+p.getId()+"')",Product.class);
         }
