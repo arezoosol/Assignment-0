@@ -38,9 +38,13 @@ public class ProductCatalogView {
     public void createCatalog(){
         if (auctionUserView.getAuctionUser().getProductCatalog()==null){
         productCatalog = new ProductCatalog();
+        System.out.println("Println debugging 1");
         this.auctionUserView.getAuctionUser().setProductCatalog(productCatalog);
+        System.out.println("Println debugging 2");
         productCatalogFacade.create(productCatalog);
-        this.auctionUserView.getUserFacade().save(auctionUserView.getAuctionUser());}
+        System.out.println("Println debugging 3");
+        this.auctionUserView.getUserFacade().save(auctionUserView.getAuctionUser());
+        System.out.println("Println debugging 4");}
     }
 
     public ProductCatalogFacade getProductCatalogFacade() {
