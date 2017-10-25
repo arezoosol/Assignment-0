@@ -74,8 +74,8 @@ public class AuctionUserView {
         return "index";
     }
     
-    public String test(){
-        return "indexOld";
+    public String getTest(){
+        return "indexOld.xhtml";
     }
 
     void save() {

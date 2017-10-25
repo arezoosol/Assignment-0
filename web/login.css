@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : 05.okt.2017, 17:07:36
     Author     : Daniel
 */
-body.background {
+.background {
   background-color:#88f;
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;

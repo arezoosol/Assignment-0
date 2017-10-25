@@ -34,7 +34,7 @@ public class BidsFacade extends AbstractFacade<Bids> {
     }
 
     public List<Bids> findRecent() {
-        TypedQuery<Bids> query = em.createQuery("SELECT a FROM Bids a ORDER BY a.startTime",Bids.class);
+        TypedQuery<Bids> query = em.createQuery("SELECT a FROM Bids a ORDER BY a.startTime DESC",Bids.class);
         List<Bids> result = query.getResultList();
         return result;
     }

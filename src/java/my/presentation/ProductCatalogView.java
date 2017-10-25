@@ -7,6 +7,7 @@ package my.presentation;
 
 import boundary.ProductCatalogFacade;
 import entities.ProductCatalog;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -33,6 +34,11 @@ public class ProductCatalogView {
 
     public void setAuctionUserView(AuctionUserView auctionUserView) {
         this.auctionUserView = auctionUserView;
+    }
+    
+    @PostConstruct
+    public void init(){
+        createCatalog();
     }
     
     public void createCatalog(){
