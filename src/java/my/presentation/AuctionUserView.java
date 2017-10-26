@@ -24,7 +24,6 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class AuctionUserView {
     
-    
     @EJB
     private AuctionUserFacade userFacade;
     private AuctionUser auctionUser;
@@ -66,14 +65,14 @@ public class AuctionUserView {
     public String authenticate(){
         if (userFacade == null)
             System.out.println("userFacade er null.. . .. . .. .. . .");
-        else{
+        else {
         if (userFacade.authenticate(auctionUser))
             return "theend";
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong username and password combination.","Login error"));
         return "index";
     }
-    
+
     public String getTest(){
         return "indexOld.xhtml";
     }
