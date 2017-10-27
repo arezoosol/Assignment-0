@@ -9,6 +9,8 @@ import entities.Bids;
 import entities.Product;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -19,6 +21,7 @@ import my.presentation.AuctionUserView;
  * @author Daniel
  */
 @Stateless
+@WebService(name="bidsFacade")
 public class BidsFacade extends AbstractFacade<Bids> {
 
     @PersistenceContext(unitName = "SimpleEE6AppPU")
