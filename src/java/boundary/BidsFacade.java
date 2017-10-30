@@ -10,6 +10,7 @@ import entities.Product;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,7 +22,6 @@ import my.presentation.AuctionUserView;
  * @author Daniel
  */
 @Stateless
-@WebService(name="bidsFacade")
 public class BidsFacade extends AbstractFacade<Bids> {
 
     @PersistenceContext(unitName = "SimpleEE6AppPU")
@@ -88,6 +88,33 @@ public class BidsFacade extends AbstractFacade<Bids> {
         TypedQuery<Bids> query = em.createQuery("SELECT b FROM Bids b WHERE b.product.productName LIKE '%"+productName+"%'",Bids.class);
         List<Bids> list = query.getResultList();
         return list;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "print")
+    public String print(int i) {
+        //TODO write your implementation code here:
+        return i+"";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "operation")
+    public String operation() {
+        //TODO write your implementation code here:
+        return "test";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "Test")
+    public String Test(@WebParam(name = "test") String test) {
+        //TODO write your implementation code here:
+        return test;
     }
     
 }
