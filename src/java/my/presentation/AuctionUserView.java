@@ -24,6 +24,8 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class AuctionUserView {
     
+    //@XmlTransient for reference
+    
     @EJB
     private AuctionUserFacade userFacade;
     private AuctionUser auctionUser;
